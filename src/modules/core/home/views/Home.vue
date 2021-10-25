@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <h1>NLW Together</h1>
     <h2>User List</h2>
     <AppBtn @click="handleClick('uid')">Sort by UID</AppBtn>
     <AppBtn @click="handleClick('displayName')">Sort by Display Name</AppBtn>
