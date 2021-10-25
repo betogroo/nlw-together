@@ -21,6 +21,7 @@ import AppBtn from '@/components/app/AppBtn.vue'
 import User from '../types/User'
 import Job from '../types/Job'
 import OrderTerm from '@/modules/core/home/types/OrderTerm'
+import { useStore } from '@/store'
 
 export default defineComponent({
   name: 'Home',
@@ -32,6 +33,10 @@ export default defineComponent({
   },
 
   setup() {
+    const store = useStore()
+    console.log(store)
+
+    console.log(store.state.count)
     const users = ref<User[]>([
       {
         displayName: 'Beto',
