@@ -1,7 +1,7 @@
 <template>
   <div class="letmeask">
     <h1>Let me Ask</h1>
-    <app-btn :value="0"></app-btn>
+    <app-btn>Click</app-btn>
   </div>
 </template>
 
