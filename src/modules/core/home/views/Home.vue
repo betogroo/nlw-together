@@ -18,7 +18,7 @@ import { defineComponent, ref } from 'vue'
 import UserList from '@/modules/core/home/components/UserList.vue'
 import JobList from '@/modules/core/home/components/JobList.vue'
 import AppBtn from '@/components/app/AppBtn.vue'
-import User from '../types/User'
+import { User } from '../../auth/types/User'
 import Job from '../types/Job'
 import OrderTerm from '@/modules/core/home/types/OrderTerm'
 import { useStore } from '@/store'
@@ -36,7 +36,7 @@ export default defineComponent({
     const store = useStore()
     console.log(store)
 
-    console.log(store.state.count)
+    console.log(store.state.loggedUser)
     const users = ref<User[]>([
       {
         displayName: 'Beto',

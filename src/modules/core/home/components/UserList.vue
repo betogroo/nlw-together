@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from 'vue'
-import User from '@/modules/core/home/types/User'
+import { User } from '@/modules/core/auth/types/User'
 import OrderTerm from '@/modules/core/home/types/OrderTerm'
 export default defineComponent({
   name: 'UserList',
