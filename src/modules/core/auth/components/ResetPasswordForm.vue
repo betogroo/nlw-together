@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <form @submit.prevent="handleSubmit">
-      <input v-model="formData.email" type="email" />
-      <button type="submit">Redefinir</button>
-    </form>
-  </div>
+  <form @submit.prevent="handleSubmit">
+    <input v-model="formData.email" type="email" />
+    <button type="submit">Redefinir</button>
+  </form>
 </template>
 
 <script lang="ts">

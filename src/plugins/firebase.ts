@@ -8,7 +8,9 @@ import {
   sendEmailVerification,
   sendPasswordResetEmail,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithRedirect
 } from 'firebase/auth'
 
 initializeApp({
@@ -31,5 +33,7 @@ export {
   sendPasswordResetEmail,
   signOut,
   fbAuth,
-  onAuthStateChanged
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithRedirect
 }

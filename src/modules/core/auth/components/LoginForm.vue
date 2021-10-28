@@ -1,29 +1,55 @@
 <template>
-  <div>
-    <form @submit.prevent="handleSubmit">
-      <input type="email" v-model="formData.email" />
-      <input type="password" v-model="formData.password" />
-      <button type="submit">Entrar</button>
-    </form>
-  </div>
+  <app-btn @click.prevent="handleClick" class="btn-google block"
+    >Entrar com o Google</app-btn
+  >
+  <form @submit.prevent="handleSubmit">
+    <AppInput placeholder="Email" type="email" v-model="formData.email" />
+    <AppInput placeholder="Senha" type="password" v-model="formData.password" />
+    <app-btn class="btn block" type="submit">Entrar</app-btn>
+  </form>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import useLogin from '../composables/useLogin'
+import AppInput from '@/components/app/AppInput.vue'
+import AppBtn from '@/components/app/AppBtn.vue'
 import Auth from '../types/Auth'
 
 export default defineComponent({
+  name: 'LoginForm',
+
+  components: {
+    AppInput,
+    AppBtn
+  },
+
   setup() {
+    const { error, isPending, loginWithGoogle } = useLogin()
     const formData = ref<Auth>({
       email: '',
       password: ''
     })
-    const handleSubmit = () => {
+    const handleSubmit = (): void => {
       console.log(formData.value)
     }
-    return { formData, handleSubmit }
+
+    const handleClick = async () => {
+      await loginWithGoogle()
+    }
+    return { formData, handleSubmit, handleClick, error, isPending }
   }
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+form {
+  width: 100%;
+}
+.btn {
+  background-color: blue;
+}
+.btn-google {
+  background-color: red;
+}
+</style>

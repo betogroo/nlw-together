@@ -2,10 +2,12 @@
   <div class="home">
     <h1>NLW Together</h1>
     <h2>User List</h2>
-    <AppBtn @click="handleClick('uid')">Sort by UID</AppBtn>
-    <AppBtn @click="handleClick('displayName')">Sort by Display Name</AppBtn>
-    <AppBtn @click="handleClick('email')">Sort by Display Email</AppBtn>
-    <AppBtn @click="handleClick('role')">Sort by Display Role</AppBtn>
+    <AppBtn @click="handleClick('uid')">Sort by UID</AppBtn><br />
+    <AppBtn @click="handleClick('displayName')">Sort by Display Name</AppBtn
+    ><br />
+    <AppBtn @click="handleClick('email')">Sort by Display Email</AppBtn><br />
+    <AppBtn @click="handleClick('role')">Sort by Display Role</AppBtn><br />
+    <hr />
     <UserList :users="users" :order="order" />
     <hr />
     <h1>Job List</h1>

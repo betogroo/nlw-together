@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <form @submit.prevent="handleSubmit">
-      <input v-model="formData.displayName" type="text" />
-      <input v-model="formData.email" type="email" />
-      <input v-model="formData.password" type="password" />
-      <input v-model="formData.passwordConfirm" type="password" />
-      <button type="submit">Cadastrar</button>
-    </form>
-  </div>
+  <form @submit.prevent="handleSubmit">
+    <input v-model="formData.displayName" type="text" />
+    <input v-model="formData.email" type="email" />
+    <input v-model="formData.password" type="password" />
+    <input v-model="formData.passwordConfirm" type="password" />
+    <button type="submit">Cadastrar</button>
+  </form>
 </template>
 
 <script lang="ts">
