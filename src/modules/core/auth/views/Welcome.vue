@@ -1,19 +1,23 @@
 <template>
-  <div class="box">
-    <div class="form-box">
-      <h1>Login</h1>
-      <LoginForm v-if="mode === 'login'" />
-      <SignupForm v-if="mode === 'signup'" />
-      <ResetPasswordForm v-if="mode === 'reset'" />
-    </div>
+  <let-me-ask-template>
+    <h1>Login</h1>
+    <LoginForm v-if="mode === 'login'" />
+    <SignupForm v-if="mode === 'signup'" />
+    <ResetPasswordForm v-if="mode === 'reset'" />
+  </let-me-ask-template>
+  <hr />
+  <div>
+    {{ user }}
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
+import LetMeAskTemplate from '@/components/layout/LetMeAskTemplate.vue'
 import LoginForm from '../components/LoginForm.vue'
 import SignupForm from '../components/SignupForm.vue'
 import ResetPasswordForm from '../components/ResetPasswordForm.vue'
+import { getAuth, getRedirectResult, GoogleAuthProvider } from 'firebase/auth'
 
 export default defineComponent({
   name: 'Welcome',
@@ -28,33 +32,41 @@ export default defineComponent({
   components: {
     LoginForm,
     SignupForm,
-    ResetPasswordForm
+    ResetPasswordForm,
+    LetMeAskTemplate
   },
 
   setup() {
-    return {}
+    const auth = getAuth()
+    const token = ref('')
+    const error = ref('')
+    const user = ref({})
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result) {
+          // This gives you a Google Access Token. You can use it to access Google APIs.
+          const credential: any =
+            GoogleAuthProvider.credentialFromResult(result)
+          token.value = credential.accessToken
+
+          // The signed-in user info.
+          user.value = result.user
+        } else {
+          throw new Error('Seu erro na parada')
+        }
+      })
+      .catch((err) => {
+        // Handle Errors here.
+        error.value = err.code
+        //const errorMessage = error.message
+        // The email of the user's account used.
+        //const email = error.email
+        // The AuthCredential type that was used.
+        //const credential = GoogleAuthProvider.credentialFromError(error)
+        // ...
+      })
+
+    return { token, user, error }
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  height: 84vh;
-}
-.form-box {
-  border: 1px solid #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-  align-items: center;
-  padding: 4px;
-  width: 70vw;
-  max-width: 320px;
-  height: 200px;
-}
-</style>

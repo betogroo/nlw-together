@@ -7,11 +7,13 @@
     <AppInput placeholder="Senha" type="password" v-model="formData.password" />
     <app-btn class="btn block" type="submit">Entrar</app-btn>
   </form>
+  {{ isPending }}
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import useLogin from '../composables/useLogin'
+import { useRouter } from 'vue-router'
 import AppInput from '@/components/app/AppInput.vue'
 import AppBtn from '@/components/app/AppBtn.vue'
 import Auth from '../types/Auth'
@@ -25,6 +27,7 @@ export default defineComponent({
   },
 
   setup() {
+    const router = useRouter()
     const { error, isPending, loginWithGoogle } = useLogin()
     const formData = ref<Auth>({
       email: '',
@@ -35,7 +38,8 @@ export default defineComponent({
     }
 
     const handleClick = async () => {
-      await loginWithGoogle()
+      await loginWithGoogle('pop')
+      router.push({ name: 'Welcome' })
     }
     return { formData, handleSubmit, handleClick, error, isPending }
   }

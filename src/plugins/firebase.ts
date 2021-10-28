@@ -10,7 +10,8 @@ import {
   signOut,
   onAuthStateChanged,
   GoogleAuthProvider,
-  signInWithRedirect
+  signInWithRedirect,
+  signInWithPopup
 } from 'firebase/auth'
 
 initializeApp({
@@ -35,5 +36,6 @@ export {
   fbAuth,
   onAuthStateChanged,
   GoogleAuthProvider,
-  signInWithRedirect
+  signInWithRedirect,
+  signInWithPopup
 }
